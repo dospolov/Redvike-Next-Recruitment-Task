@@ -1,6 +1,6 @@
 # NOTES TO REVIEWER
 
-1. I'm totally cool with Tanstack Query, but I don't see any usecases here, since I'm using React Server Components.
+1. I'm totally cool with Tanstack Query, but I don't see any usecases here, since I'm using React Server Components. There are no client-side mutations needed and no state updates, so I've decided not to use it and rely on Next.js server requests and caching.
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 

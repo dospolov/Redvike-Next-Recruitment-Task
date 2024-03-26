@@ -27,7 +27,7 @@ export default async function Home() {
   const pokemons = await getFirstGen()
 
   return (
-    <main className="pt-10 space-y-5">
+    <main className="space-y-5">
       <Suspense fallback={<div>Loading...</div>}>
         <Grid pokemons={pokemons} />
       </Suspense>
