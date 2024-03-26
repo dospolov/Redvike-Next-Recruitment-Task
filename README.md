@@ -1,3 +1,7 @@
+# NOTES TO REVIEWER
+
+1. I'm totally cool with Tanstack Query, but I don't see any usecases here, since I'm using React Server Components.
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
