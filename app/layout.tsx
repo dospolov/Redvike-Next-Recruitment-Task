@@ -20,7 +20,7 @@ export default function RootLayout({
       <body
         className={cn(
           inter.className,
-          "container mx-auto sm:px-6 lg:px-8 bg-gray-100 py-10"
+          "container mx-auto sm:px-6 lg:px-8 bg-gray-50 py-10"
         )}
       >
         {children}
