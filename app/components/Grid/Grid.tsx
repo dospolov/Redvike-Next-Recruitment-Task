@@ -20,17 +20,17 @@ export default function Grid({ pokemons }: GridProps) {
       {pokemons.map((pokemon) => (
         <li key={pokemon.name} className="relative">
           <Link href={`/${pokemon.name}`} className="group">
-            <div className="aspect-h-7 aspect-w-10 block w-full overflow-hidden rounded-lg bg-gray-100 focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 focus-within:ring-offset-gray-100">
+            <div className="aspect-h-7 aspect-w-10 flex w-full overflow-hidden rounded-lg bg-gray-100 focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 focus-within:ring-offset-gray-100 justify-center align-middle">
               <Image
                 src={`/assets/images/${pokemon.id}.png`}
-                alt=""
-                className="pointer-events-none object-contain group-hover:opacity-75"
+                alt={pokemon.name}
+                className="pointer-events-none object-contain group-hover:opacity-75 h-full w-full"
                 width={200}
                 height={200}
-                loading="lazy"
+                priority={true}
               />
             </div>
-            <p className="pointer-events-none mt-2 block truncate text-sm font-medium text-gray-900">
+            <p className="pointer-events-none mt-2 block truncate text-sm font-medium text-gray-900 capitalize">
               {pokemon.name}
             </p>
           </Link>
