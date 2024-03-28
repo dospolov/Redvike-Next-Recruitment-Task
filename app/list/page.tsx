@@ -23,13 +23,15 @@ async function getFirstGen() {
   return addIdsToPokemons(pokemon_species)
 }
 
+const DEFAULT_PER_PAGE = "5"
+
 export default async function Home({
   searchParams,
 }: {
   searchParams: { [key: string]: string | string[] | undefined }
 }) {
   const page = searchParams["page"] ?? "1"
-  const per_page = searchParams["per_page"] ?? "5"
+  const per_page = searchParams["per_page"] ?? DEFAULT_PER_PAGE
 
   const start = (Number(page) - 1) * Number(per_page)
   const end = start + Number(per_page)
