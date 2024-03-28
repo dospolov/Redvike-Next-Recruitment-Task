@@ -2,10 +2,17 @@
 
 import { useCallback, useState } from "react"
 import { useResizeDetector } from "react-resize-detector"
-import { RESOLUTIONS } from "app/constants"
 import Grid from "cmp/Grid"
 import Pagination from "cmp/Pagination"
 import { Pokemon } from "@/types/Pokemon"
+
+const RESOLUTIONS = {
+  mobile: { minWidth: 0, perPage: 5 },
+  sm: { minWidth: 640, perPage: 8 },
+  md: { minWidth: 768, perPage: 12 },
+  lg: { minWidth: 1024, perPage: 16 },
+  xl: { minWidth: 1280, perPage: 20 },
+}
 
 function List({ pokemons }: { pokemons: Pokemon[] }) {
   const [perPage, setPerPage] = useState(RESOLUTIONS.mobile.perPage)
