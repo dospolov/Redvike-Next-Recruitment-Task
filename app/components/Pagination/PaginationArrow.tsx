@@ -17,7 +17,8 @@ export default function PaginationArrow({
         "relative inline-flex items-center px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0",
         isNext ? "rounded-r-md" : "rounded-l-md"
       )}
-      onClick={onClick}
+      role="button"
+      data-testid={isNext ? "pagination-next" : "pagination-prev"}
     >
       <Arrow className="h-5 w-5" aria-hidden="true" />
     </button>
