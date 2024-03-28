@@ -1,6 +1,6 @@
 import { useRouter } from "next/navigation"
 
-export default function PaginationNumButton({
+export default function PaginationNum({
   page,
   per_page,
   isActive,
