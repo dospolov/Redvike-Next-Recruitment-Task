@@ -2,6 +2,7 @@ import type { Metadata } from "next"
 import { PokemonInfo } from "@/types/Pokemon"
 import Breadcrumbs from "cmp/Breadcrumbs"
 import Card from "cmp/Card"
+import NotFound from "cmp/NotFound"
 
 type Props = {
   params: { slug: string }
@@ -23,7 +24,12 @@ async function getPokemon(name: string) {
 }
 
 export default async function Page({ params }: { params: { slug: string } }) {
-  const pokemon = await getPokemon(params.slug)
+  let pokemon
+  try {
+    pokemon = await getPokemon(params.slug)
+  } catch (error) {
+    return <NotFound />
+  }
 
   return (
     <>

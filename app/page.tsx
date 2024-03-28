@@ -10,7 +10,7 @@ const addIdsToPokemons = (pokemons: Pokemon[]) => {
   })
 }
 
-async function getFirstGen() {
+async function getFirstGen(): Promise<Pokemon[]> {
   const res = await fetch(`https://pokeapi.co/api/v2/generation/1`)
   const { pokemon_species } = await res.json()
 
@@ -18,7 +18,12 @@ async function getFirstGen() {
 }
 
 export default async function Home() {
-  const pokemons: Pokemon[] = await getFirstGen()
+  let pokemons: Pokemon[] = []
+  try {
+    pokemons = await getFirstGen()
+  } catch (error) {
+    return "Failed to load data..."
+  }
 
   return (
     <Suspense fallback={<div>Loading...</div>}>
