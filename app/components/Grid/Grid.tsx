@@ -15,7 +15,7 @@ export default memo(function Grid({ pokemons }: { pokemons: Pokemon[] }) {
             key={pokemon.name}
             className={"relative bg-gray-200 text-center p-5"}
           >
-            <Link href={`/list/${pokemon.name}`} className="group">
+            <Link href={`/pokemon/${pokemon.name}`} className="group">
               <Image
                 src={`/assets/images/${pokemon.id}.png`}
                 alt={pokemon.name}

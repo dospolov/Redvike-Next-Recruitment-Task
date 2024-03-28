@@ -1,6 +1,6 @@
 "use client"
 
-import { useCallback, useState, useEffect } from "react"
+import { useCallback, useState } from "react"
 import { useResizeDetector } from "react-resize-detector"
 import { RESOLUTIONS } from "app/constants"
 import Grid from "cmp/Grid"

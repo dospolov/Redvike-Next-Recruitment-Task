@@ -7,7 +7,7 @@ type Crumbs = {
 
 export default function Breadcrumbs({ path }: { path: Crumbs[] }) {
   return (
-    <nav className="flex" aria-label="Breadcrumb">
+    <nav className="flex p-5" aria-label="Breadcrumb">
       <ol role="list" className="flex items-center space-x-4">
         <li>
           <Link href="/" className="text-gray-400 hover:text-gray-500">

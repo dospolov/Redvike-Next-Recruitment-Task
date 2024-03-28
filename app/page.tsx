@@ -1,6 +1,5 @@
 import { Suspense } from "react"
 import List from "./List"
-import { RESOLUTIONS } from "app/constants"
 import { Pokemon } from "@/types/Pokemon"
 
 const addIdsToPokemons = (pokemons: Pokemon[]) => {

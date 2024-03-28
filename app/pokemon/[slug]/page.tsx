@@ -26,9 +26,9 @@ export default async function Page({ params }: { params: { slug: string } }) {
   const pokemon = await getPokemon(params.slug)
 
   return (
-    <div className="space-y-5">
+    <>
       <Breadcrumbs path={[{ name: pokemon.name }]} />
       <Card pokemon={pokemon} />
-    </div>
+    </>
   )
 }
