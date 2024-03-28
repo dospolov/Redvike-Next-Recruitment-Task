@@ -7,6 +7,9 @@ import PaginationPrevButton from "./PaginationPrevButton"
 import PaginationNumButton from "./PaginationNumButton"
 import PaginationNextButton from "./PaginationNextButton"
 
+const DEFAULT_PAGE = "1"
+const DEFAULT_PER_PAGE = "20"
+
 function Pagination({
   hasNextPage,
   hasPrevPage,
@@ -19,8 +22,8 @@ function Pagination({
   const router = useRouter()
   const searchParams = useSearchParams()
 
-  const page = Number(searchParams.get("page") ?? "1")
-  const per_page = Number(searchParams.get("per_page") ?? "5")
+  const page = Number(searchParams.get("page") ?? DEFAULT_PAGE)
+  const per_page = Number(searchParams.get("per_page") ?? DEFAULT_PER_PAGE)
   const lastPage = Math.ceil(itemsCount / per_page)
 
   if (page <= 0 || isNaN(page)) router.push(`?page=1&per_page=${per_page}`)

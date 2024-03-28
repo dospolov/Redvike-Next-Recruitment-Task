@@ -23,7 +23,7 @@ async function getFirstGen() {
   return addIdsToPokemons(pokemon_species)
 }
 
-const DEFAULT_PER_PAGE = "5"
+const DEFAULT_PER_PAGE = "20"
 
 export default async function Home({
   searchParams,
