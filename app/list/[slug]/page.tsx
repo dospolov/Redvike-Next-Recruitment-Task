@@ -1,5 +1,5 @@
 import type { Metadata } from "next"
-import { Pokemon } from "@/types/Pokemon"
+import { PokemonInfo } from "@/types/Pokemon"
 import Breadcrumbs from "cmp/Breadcrumbs"
 import Card from "cmp/Card"
 
@@ -18,7 +18,7 @@ async function getPokemon(name: string) {
   if (!res.ok) {
     throw new Error("Failed to fetch user data")
   }
-  const pokemon: Pokemon = await res.json()
+  const pokemon: PokemonInfo = await res.json()
   return pokemon
 }
 

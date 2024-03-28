@@ -1,13 +1,7 @@
 import { Suspense } from "react"
+import List from "./List"
 import { RESOLUTIONS } from "app/constants"
-import Grid from "cmp/Grid"
-import Pagination from "cmp/Pagination"
-
-type Pokemon = {
-  id: string
-  name: string
-  url: string
-}
+import { Pokemon } from "@/types/Pokemon"
 
 const addIdsToPokemons = (pokemons: Pokemon[]) => {
   return pokemons.map(({ name, url }: { name: string; url: string }) => {
@@ -24,38 +18,12 @@ async function getFirstGen() {
   return addIdsToPokemons(pokemon_species)
 }
 
-export default async function Home({
-  searchParams,
-}: {
-  searchParams: { [key: string]: string | string[] | undefined }
-}) {
-  const pokemons = await getFirstGen()
-
-  const page = Number(searchParams["page"] ?? "1")
-  const start = (page - 1) * RESOLUTIONS.xl.perPage
-  const end = start + RESOLUTIONS.xl.perPage
-  const entries = pokemons.slice(start, end)
+export default async function Home() {
+  const pokemons: Pokemon[] = await getFirstGen()
 
   return (
-    <main className="space-y-5">
-      <Suspense fallback={<div>Loading...</div>}>
-        <div className="sm:hidden">
-          <Grid pokemons={entries.slice(0, RESOLUTIONS.mobile.perPage)} />
-        </div>
-        <div className="hidden sm:block md:hidden">
-          <Grid pokemons={entries.slice(0, RESOLUTIONS.sm.perPage)} />
-        </div>
-        <div className="hidden md:block lg:hidden">
-          <Grid pokemons={entries.slice(0, RESOLUTIONS.md.perPage)} />
-        </div>
-        <div className="hidden lg:block xl:hidden">
-          <Grid pokemons={entries.slice(0, RESOLUTIONS.lg.perPage)} />
-        </div>
-        <div className="hidden xl:block">
-          <Grid pokemons={entries.slice(0, RESOLUTIONS.xl.perPage)} />
-        </div>
-      </Suspense>
-      <Pagination itemsCount={pokemons.length} />
-    </main>
+    <Suspense fallback={<div>Loading...</div>}>
+      <List pokemons={pokemons} />
+    </Suspense>
   )
 }

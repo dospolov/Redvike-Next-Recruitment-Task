@@ -344,6 +344,12 @@ export type PastTypes = {
 }
 
 export type Pokemon = {
+  id: string
+  name: string
+  url: string
+}
+
+export type PokemonInfo = {
   id: number
   name: string
   base_experience: number

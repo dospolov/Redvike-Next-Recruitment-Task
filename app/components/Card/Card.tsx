@@ -1,8 +1,8 @@
 import React from "react"
-import { Pokemon } from "@/types/Pokemon"
+import { PokemonInfo } from "@/types/Pokemon"
 import Image from "next/image"
 
-function Card({ pokemon }: { pokemon: Pokemon }) {
+function Card({ pokemon }: { pokemon: PokemonInfo }) {
   return (
     <div className="overflow-hidden rounded-xl md:border border-gray-200 md:flex md:max-w-[500px] md:p-5">
       <Image

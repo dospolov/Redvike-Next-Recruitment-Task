@@ -1,22 +1,11 @@
+import { memo } from "react"
 import Image from "next/image"
 import Link from "next/link"
+import { Pokemon } from "@/types/Pokemon"
 
-type Pokemon = {
-  id: string
-  name: string
-  url: string
-}
-
-type GridProps = {
-  pokemons: Pokemon[]
-}
-
-export default function Grid({ pokemons }: GridProps) {
+export default memo(function Grid({ pokemons }: { pokemons: Pokemon[] }) {
   return (
     <>
-      <div className="text-2xl">
-        <div>pokemons.length: {pokemons.length}</div>
-      </div>
       <ul
         role="list"
         className="grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5"
@@ -24,7 +13,7 @@ export default function Grid({ pokemons }: GridProps) {
         {pokemons.map((pokemon, i) => (
           <li
             key={pokemon.name}
-            className={"relative bg-gray-200 text-center p-5 m-5"}
+            className={"relative bg-gray-200 text-center p-5"}
           >
             <Link href={`/list/${pokemon.name}`} className="group">
               <Image
@@ -44,4 +33,4 @@ export default function Grid({ pokemons }: GridProps) {
       </ul>
     </>
   )
-}
+})
