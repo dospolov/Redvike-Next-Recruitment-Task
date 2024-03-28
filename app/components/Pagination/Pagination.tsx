@@ -1,13 +1,23 @@
 "use client"
 
-import React from "react"
+import { useCallback } from "react"
 import { useSearchParams, useRouter } from "next/navigation"
+import { useResizeDetector } from "react-resize-detector"
 import PaginationDelimiter from "./PaginationDelimiter"
 import PaginationArrow from "./PaginationArrow"
 import PaginationNum from "./PaginationNum"
 
 const DEFAULT_PAGE = "1"
 const DEFAULT_PER_PAGE = "20"
+
+const resolutions = {
+  mobile: 0,
+  sm: 640,
+  md: 768,
+  lg: 1024,
+  xl: 1280,
+  "2xl": 1536,
+}
 
 function Pagination({
   hasNextPage,
@@ -20,6 +30,19 @@ function Pagination({
 }) {
   const router = useRouter()
   const searchParams = useSearchParams()
+  const onResize = useCallback(
+    (width: number | undefined, height: number | undefined) => {
+      console.log(width, height)
+    },
+    []
+  )
+
+  const { width, height, ref } = useResizeDetector({
+    handleHeight: false,
+    refreshMode: "debounce",
+    refreshRate: 100,
+    onResize,
+  })
 
   const page = Number(searchParams.get("page") ?? DEFAULT_PAGE)
   const per_page = Number(searchParams.get("per_page") ?? DEFAULT_PER_PAGE)
@@ -29,7 +52,10 @@ function Pagination({
   if (page > lastPage) router.push(`?page=${lastPage}&per_page=${per_page}`)
 
   return (
-    <nav className="flex items-center justify-center border-t border-gray-200 px-4 sm:px-0">
+    <nav
+      className="flex items-center justify-center border-t border-gray-200 px-4 sm:px-0"
+      ref={ref}
+    >
       <PaginationArrow
         isDisabled={!hasPrevPage}
         page={page}
