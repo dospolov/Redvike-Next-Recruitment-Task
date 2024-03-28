@@ -19,6 +19,7 @@ export default function PaginationArrow({
       )}
       role="button"
       data-testid={isNext ? "pagination-next" : "pagination-prev"}
+      onClick={onClick}
     >
       <Arrow className="h-5 w-5" aria-hidden="true" />
     </button>
