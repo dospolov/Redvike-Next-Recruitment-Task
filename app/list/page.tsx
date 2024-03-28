@@ -23,15 +23,30 @@ async function getFirstGen() {
   return addIdsToPokemons(pokemon_species)
 }
 
-export default async function Home() {
+export default async function Home({
+  searchParams,
+}: {
+  searchParams: { [key: string]: string | string[] | undefined }
+}) {
+  const page = searchParams["page"] ?? "1"
+  const per_page = searchParams["per_page"] ?? "5"
+
+  const start = (Number(page) - 1) * Number(per_page)
+  const end = start + Number(per_page)
+
   const pokemons = await getFirstGen()
+  const entries = pokemons.slice(start, end)
 
   return (
     <main className="space-y-5">
       <Suspense fallback={<div>Loading...</div>}>
-        <Grid pokemons={pokemons} />
+        <Grid pokemons={entries} />
       </Suspense>
-      <Pagination />
+      <Pagination
+        hasNextPage={end < pokemons.length}
+        hasPrevPage={start > 0}
+        itemsCount={pokemons.length}
+      />
     </main>
   )
 }
