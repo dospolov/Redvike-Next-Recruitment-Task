@@ -1,4 +1,5 @@
 import { Suspense } from "react"
+import { RESOLUTIONS } from "app/constants"
 import Grid from "cmp/Grid"
 import Pagination from "cmp/Pagination"
 
@@ -23,36 +24,38 @@ async function getFirstGen() {
   return addIdsToPokemons(pokemon_species)
 }
 
-const DEFAULT_PER_PAGE = 20
-
 export default async function Home({
   searchParams,
 }: {
   searchParams: { [key: string]: string | string[] | undefined }
 }) {
-  const page = searchParams["page"] ?? "1"
-
-  const start = (Number(page) - 1) * Number(DEFAULT_PER_PAGE)
-  const end = start + Number(DEFAULT_PER_PAGE)
-
   const pokemons = await getFirstGen()
+
+  const page = Number(searchParams["page"] ?? "1")
+  const start = (page - 1) * RESOLUTIONS.xl.perPage
+  const end = start + RESOLUTIONS.xl.perPage
   const entries = pokemons.slice(start, end)
 
   return (
     <main className="space-y-5">
       <Suspense fallback={<div>Loading...</div>}>
-        <div className="sm:px-6 lg:px-8 md:hidden">
-          <Grid pokemons={entries} itemsToDisplay={5} />
+        <div className="sm:hidden">
+          <Grid pokemons={entries.slice(0, RESOLUTIONS.mobile.perPage)} />
         </div>
-        <div className="sm:px-6 lg:px-8 hidden md:block">
-          <Grid pokemons={entries} itemsToDisplay={20} />
+        <div className="hidden sm:block md:hidden">
+          <Grid pokemons={entries.slice(0, RESOLUTIONS.sm.perPage)} />
+        </div>
+        <div className="hidden md:block lg:hidden">
+          <Grid pokemons={entries.slice(0, RESOLUTIONS.md.perPage)} />
+        </div>
+        <div className="hidden lg:block xl:hidden">
+          <Grid pokemons={entries.slice(0, RESOLUTIONS.lg.perPage)} />
+        </div>
+        <div className="hidden xl:block">
+          <Grid pokemons={entries.slice(0, RESOLUTIONS.xl.perPage)} />
         </div>
       </Suspense>
-      <Pagination
-        hasNextPage={end < pokemons.length}
-        hasPrevPage={start > 0}
-        itemsCount={pokemons.length}
-      />
+      <Pagination itemsCount={pokemons.length} />
     </main>
   )
 }
