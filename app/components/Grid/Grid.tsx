@@ -18,7 +18,7 @@ export default memo(function Grid({ pokemons }: { pokemons: Pokemon[] }) {
           <Image
             src={`/assets/images/${pokemon.id}.png`}
             alt={pokemon.name}
-            className="group-hover:opacity-75 w-full h-16 object-contain group-hover:scale-125 transition duration-200"
+            className="group-hover:opacity-75 w-full h-16 object-contain group-hover:scale-110 transition duration-200"
             width={200}
             height={200}
             priority={true}

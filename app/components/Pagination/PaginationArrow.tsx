@@ -1,27 +1,25 @@
 import React from "react"
-import {
-  ArrowLongLeftIcon,
-  ArrowLongRightIcon,
-} from "@heroicons/react/20/solid"
+import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/20/solid"
+import cn from "utils/cn"
 
 export default function PaginationArrow({
-  isDisabled,
   isNext,
   onClick,
 }: {
-  isDisabled: boolean
   isNext: boolean
   onClick: () => void
 }) {
-  const Arrow = isNext ? ArrowLongRightIcon : ArrowLongLeftIcon
+  const Arrow = isNext ? ChevronRightIcon : ChevronLeftIcon
 
   return (
     <button
-      className="inline-flex items-center border-t-2 border-transparent pr-1 pt-4 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700 disabled:hidden"
-      disabled={isDisabled}
+      className={cn(
+        "relative inline-flex items-center px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0",
+        isNext ? "rounded-r-md" : "rounded-l-md"
+      )}
       onClick={onClick}
     >
-      <Arrow className="mr-3 h-5 w-5 text-gray-400" aria-hidden="true" />
+      <Arrow className="h-5 w-5" aria-hidden="true" />
     </button>
   )
 }

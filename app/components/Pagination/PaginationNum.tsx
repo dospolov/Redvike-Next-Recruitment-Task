@@ -1,15 +1,15 @@
 export default function PaginationNum({
   page,
+  totalPages,
   setPage,
 }: {
   page: number
+  totalPages: number
   setPage: (from: number) => void
 }) {
   return (
     <button
-      className={
-        "inline-flex items-center border-t-2 border-transparent px-4 pt-4 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700"
-      }
+      className="relative inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0"
       onClick={() => setPage(page)}
     >
       {page + 1}
